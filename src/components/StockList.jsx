@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
 import finnHub from "../apis/finnHub";
 
 export const StockList = () => {
@@ -9,6 +10,11 @@ export const StockList = () => {
   //function that changes color according to the behavior of the graph
   const changeColor = (change) => {
     return change > 0 ? "success" : "danger";
+  };
+
+  // function that render the arrow up/down according to the graph behavior
+  const renderIcon = (change) => {
+    return change > 0 ? <BsFillCaretUpFill /> : <BsFillCaretDownFill />;
   };
 
   //UseEffect makes the request for the API when component mounts
@@ -66,9 +72,11 @@ export const StockList = () => {
                 <td>{stockData.data.c}</td>
                 <td className={`text-${changeColor(stockData.data.d)}`}>
                   {stockData.data.d}
+                  {renderIcon(stockData.data.d)}
                 </td>
-                <td className={`text-${changeColor(stockData.data.dp)}`}>
+                <td className={`text-${changeColor(stockData.data.d)}`}>
                   {stockData.data.dp}
+                  {renderIcon(stockData.data.d)}
                 </td>
                 <td>{stockData.data.h}</td>
                 <td>{stockData.data.l}</td>
