@@ -5,6 +5,37 @@ export const AutoComplete = () => {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
 
+  // hide/show dropdown on search box
+  const renderDropdown = () => {
+    const dropDownClass = search ? "show" : null;
+    return (
+      <ul
+        style={{
+          height: "500px",
+          overflowY: "scroll",
+          overflowX: "hidden",
+          cursor: "pointer"
+        }}
+        className={`dropdown-menu ${dropDownClass}`}
+      >
+        {results.map((result) => {
+          return (
+            <li
+              onClick={() => {
+                addStock(result.symbol);
+                setSearch("");
+              }}
+              key={result.symbol}
+              className="dropdown-item"
+            >
+              {result.description} ({result.symbol})
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
+
   // Request stock symbols from Finnhub API database
   useEffect(() => {
     let isMounted = true;
@@ -44,11 +75,12 @@ export const AutoComplete = () => {
           onChange={(e) => setSearch(e.target.value)}
         ></input>
         <label htmlFor="search">Search</label>
-        <ul className="dropdown-menu">
+        {/* <ul className="dropdown-menu">
           <li>stock1</li>
           <li>stock2</li>
           <li>stock3</li>
-        </ul>
+        </ul> */}
+        {renderDropdown()}
       </div>
     </div>
   );
