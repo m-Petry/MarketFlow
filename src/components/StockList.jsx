@@ -1,11 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
 import finnHub from "../apis/finnHub";
+import { WatchListContext } from "../context/watchListContext";
 
 export const StockList = () => {
   const [stock, setStock] = useState([]);
-  //useState defines the initial state with these 3 symbols as default
-  const [watchList, setWatchList] = useState(["GOOGL", "MSFT", "AMZN"]);
+  const { watchList } = useContext(WatchListContext);
+
+  // useContext define the initial values for homepage stock list according to WatchContext
+  useContext(WatchListContext);
 
   //function that changes color according to the behavior of the graph
   const changeColor = (change) => {
