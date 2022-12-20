@@ -5,6 +5,12 @@ export const StockList = () => {
   const [stock, setStock] = useState([]);
   //useState defines the initial state with these 3 symbols as default
   const [watchList, setWatchList] = useState(["GOOGL", "MSFT", "AMZN"]);
+
+  //function that changes color according to the behavior of the graph
+  const changeColor = (change) => {
+    return change > 0 ? "success" : "danger";
+  };
+
   //UseEffect makes the request for the API when component mounts
   useEffect(() => {
     let isMounted = true;
@@ -61,7 +67,9 @@ export const StockList = () => {
                 <td className={`text-${changeColor(stockData.data.d)}`}>
                   {stockData.data.d}
                 </td>
-                <td className="text-">{stockData.data.dp}</td>
+                <td className={`text-${changeColor(stockData.data.dp)}`}>
+                  {stockData.data.dp}
+                </td>
                 <td>{stockData.data.h}</td>
                 <td>{stockData.data.l}</td>
                 <td>{stockData.data.o}</td>
