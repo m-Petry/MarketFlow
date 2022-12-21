@@ -7,7 +7,7 @@ export const StockList = () => {
   const [stock, setStock] = useState([]);
   const { watchList } = useContext(WatchListContext);
 
-  // useContext define the initial values for homepage stock list according to WatchContext
+  //useContext define the initial values for homepage stock list according to WatchContext
   useContext(WatchListContext);
 
   //function that changes color according to the behavior of the graph
@@ -15,7 +15,7 @@ export const StockList = () => {
     return change > 0 ? "success" : "danger";
   };
 
-  // function that render the arrow up/down according to the graph behavior
+  //function that render the arrow up/down according to the graph behavior
   const renderIcon = (change) => {
     return change > 0 ? <BsFillCaretUpFill /> : <BsFillCaretDownFill />;
   };
@@ -42,14 +42,14 @@ export const StockList = () => {
           };
         });
         console.log(data);
-        // The isMounted variable is used to ensure that the operation is performed only while the component is mounted
+        //The isMounted variable is used to ensure that the operation is performed only while the component is mounted
         if (isMounted) {
           setStock(data);
         }
       } catch (err) {}
     };
     fetchData();
-    // indicates that the component was unmounted
+    //indicates that the component was unmounted
     return () => (isMounted = false);
   }, []);
   return (
