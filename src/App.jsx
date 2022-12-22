@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { StockDetailPage } from "./assets/StockDetailPage";
-import { StockOverviewPage } from "./assets/StockOverviewPage";
+import { StockDetailPage } from "./pages/StockDetailPage";
+import { StockOverviewPage } from "./pages/StockOverviewPage";
 import { WatchListContextProvider } from "./context/watchListContext";
 import "./App.css";
 

@@ -9,17 +9,14 @@ export const StockList = () => {
   const { watchList, deleteStock } = useContext(WatchListContext);
   const navigate = useNavigate();
 
-  //function that changes color according to the behavior of the graph
   const changeColor = (change) => {
     return change > 0 ? "success" : "danger";
   };
 
-  //function that render the arrow up/down according to the graph behavior
   const renderIcon = (change) => {
     return change > 0 ? <BsFillCaretUpFill /> : <BsFillCaretDownFill />;
   };
 
-  //UseEffect makes the request for the API when component mounts
   useEffect(() => {
     let isMounted = true;
     const fetchData = async () => {
@@ -42,14 +39,13 @@ export const StockList = () => {
           };
         });
         console.log(data);
-        //The isMounted variable is used to ensure that the operation is performed only while the component is mounted
         if (isMounted) {
           setStock(data);
         }
       } catch (err) {}
     };
     fetchData();
-    // indicates that the component was unmounted
+
     return () => (isMounted = false);
   }, [watchList]);
 
