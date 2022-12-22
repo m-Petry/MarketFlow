@@ -7,9 +7,6 @@ export const StockList = () => {
   const [stock, setStock] = useState([]);
   const { watchList } = useContext(WatchListContext);
 
-  //useContext define the initial values for homepage stock list according to WatchContext
-  useContext(WatchListContext);
-
   //function that changes color according to the behavior of the graph
   const changeColor = (change) => {
     return change > 0 ? "success" : "danger";
