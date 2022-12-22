@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
 import finnHub from "../apis/finnHub";
 import { WatchListContext } from "../context/watchListContext";
@@ -6,6 +7,7 @@ import { WatchListContext } from "../context/watchListContext";
 export const StockList = () => {
   const [stock, setStock] = useState([]);
   const { watchList } = useContext(WatchListContext);
+  const navigate = useNavigate();
 
   //function that changes color according to the behavior of the graph
   const changeColor = (change) => {
@@ -49,6 +51,11 @@ export const StockList = () => {
     //indicates that the component was unmounted
     return () => (isMounted = false);
   }, [watchList]);
+
+  const handleStockSelect = (symbol) => {
+    navigate(`detail/${symbol}`);
+  };
+
   return (
     <div>
       <table className="table hover mt-5">
@@ -67,7 +74,12 @@ export const StockList = () => {
         <tbody>
           {stock.map((stockData) => {
             return (
-              <tr className="table-row" key={stockData.symbol}>
+              <tr
+                style={{ cursor: "pointer" }}
+                onClick={() => handleStockSelect}
+                className="table-row"
+                key={stockData.symbol}
+              >
                 <th scope="row">{stockData.symbol}</th>
                 <td>{stockData.data.c}</td>
                 <td className={`text-${changeColor(stockData.data.d)}`}>
