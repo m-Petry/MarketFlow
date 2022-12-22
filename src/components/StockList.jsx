@@ -48,7 +48,7 @@ export const StockList = () => {
     fetchData();
     //indicates that the component was unmounted
     return () => (isMounted = false);
-  }, []);
+  }, [watchList]);
   return (
     <div>
       <table className="table hover mt-5">
