@@ -3,7 +3,9 @@ import { createContext, useState, useEffect } from "react";
 export const WatchListContext = createContext();
 
 export const WatchListContextProvider = (props) => {
-  const [watchList, setWatchList] = useState(["GOOGL", "MSFT", "AMZN"]);
+  const [watchList, setWatchList] = useState(
+    localStorage.getItem("watchList")?.split(",") || ["GOOGL", "MSFT", "AMZN"]
+  );
 
   // useEffect prevents the component of the homepage from rerendered
   useEffect(() => {
