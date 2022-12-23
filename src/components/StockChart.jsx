@@ -1,5 +1,6 @@
 import Chart from "react-apexcharts";
 import { useState } from "react";
+
 export const StockChart = ({ chartData, symbol }) => {
   const [dateFormat, setDateFormat] = useState("24h");
   const { day, week, year } = chartData;
